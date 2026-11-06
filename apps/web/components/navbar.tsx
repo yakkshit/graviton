@@ -74,7 +74,7 @@ export function Navbar() {
               <Magnetic key={link.href} intensity={0.2} range={50}>
                 <Link
                   href={link.href}
-                  className="relative px-3 py-1 text-xs font-mono text-neutral-300 hover:text-white transition-colors duration-200 block after:absolute after:bottom-0 after:left-2 after:right-2 after:h-[2px] after:w-0 hover:after:w-[calc(100%-16px)] after:bg-[var(--color-accent)] after:transition-all after:duration-300"
+                  className="relative px-3 py-1 text-xs font-mono text-neutral-300 hover:text-white transition-colors duration-200 block after:absolute after:bottom-0 after:left-2 after:right-2 after:h-0.5 after:w-0 hover:after:w-[calc(100%-16px)] after:bg-(--color-accent) after:transition-all after:duration-300"
                 >
                   {link.label}
                 </Link>
