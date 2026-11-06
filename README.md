@@ -10,8 +10,9 @@
 
 <p align="center">
   <a href="https://www.npmjs.com/package/@yakkshit/graviton"><img src="https://img.shields.io/npm/v/@yakkshit/graviton?style=for-the-badge&logo=npm&color=3B82F6" alt="npm version"/></a>
+  <a href="https://pypi.org/project/graviton-cli"><img src="https://img.shields.io/pypi/v/graviton-cli?style=for-the-badge&logo=pypi&color=3B82F6" alt="PyPI version"/></a>
   <a href="./LICENSE"><img src="https://img.shields.io/badge/License-MIT-blue?style=for-the-badge" alt="MIT License"/></a>
-  <a href="https://github.com"><img src="https://img.shields.io/badge/Build-Passing-10B981?style=for-the-badge&logo=githubactions&logoColor=white" alt="Build Status"/></a>
+  <a href="https://github.com/yakkshit/graviton"><img src="https://img.shields.io/badge/Build-Passing-10B981?style=for-the-badge&logo=githubactions&logoColor=white" alt="Build Status"/></a>
   <a href="https://bun.sh"><img src="https://img.shields.io/badge/Bun-1.4+-black?style=for-the-badge&logo=bun" alt="Bun"/></a>
   <a href="https://modelcontextprotocol.io"><img src="https://img.shields.io/badge/MCP-Protocol%20Ready-6366F1?style=for-the-badge&logo=anthropic" alt="MCP Ready"/></a>
   <a href="https://turbo.build"><img src="https://img.shields.io/badge/Turborepo-Fast-EF4444?style=for-the-badge&logo=turborepo" alt="Turborepo"/></a>
@@ -45,10 +46,24 @@ Modern reasoning models (Claude 3.7 Sonnet, Gemini 2.5 Flash, GPT-4o, DeepSeek-R
 
 ## 🚀 Quick Start
 
-Run the standalone CLI directly with **Bunx** (zero install required):
+### Option A: Bunx / NPX (Zero install required)
 
 ```bash
+# Using Bun (instant startup)
 bunx @yakkshit/graviton start
+
+# Or using NPX
+npx @yakkshit/graviton start
+```
+
+### Option B: Python (via PyPI)
+
+```bash
+# Install globally or in your virtualenv
+pip install graviton-cli
+
+# Run anywhere
+graviton start
 ```
 
 ### CLI Command Options

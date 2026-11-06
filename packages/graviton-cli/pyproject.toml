@@ -1,0 +1,53 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "graviton-cli"
+version = "1.0.0"
+description = "The self-hosted, zero-trust AI coding cockpit. Control gravity, not just code."
+readme = "README.md"
+requires-python = ">=3.8"
+license = { text = "MIT" }
+authors = [
+    { name = "Yakkshit", email = "hello@graviton.dev" }
+]
+keywords = [
+    "ai",
+    "mcp",
+    "model-context-protocol",
+    "cockpit",
+    "zero-trust",
+    "ast",
+    "claude",
+    "cursor",
+    "graviton",
+    "developer-tools"
+]
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Software Development :: Build Tools",
+    "Topic :: Software Development :: Code Generators",
+    "Topic :: Software Development :: Version Control :: Git",
+]
+
+[project.urls]
+Homepage = "https://github.com/yakkshit/graviton"
+Documentation = "https://github.com/yakkshit/graviton#readme"
+Repository = "https://github.com/yakkshit/graviton.git"
+Issues = "https://github.com/yakkshit/graviton/issues"
+
+[project.scripts]
+graviton = "graviton.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["graviton*"]

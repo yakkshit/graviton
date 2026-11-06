@@ -39,3 +39,22 @@ Thumbs.db
 *.pem
 *.tgz
 bun.lockb
+
+# My Local .env files - ignore all
+.env.local.env
+.env.development.local.env
+.env.test.local.env
+.env.production.local.env
+.env.example.env
+
+# Python artifacts
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+.eggs/
+*.egg
+.venv/
+env/
+venv/
+
