@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import { useCockpitStore } from "@/lib/cockpit-store";
 import { useAccentTheme } from "@/components/theme-provider";
-import { sendDecisionToGraviton, sendDecisionToOrbit } from "@/lib/socket-client";
+import { sendDecisionToGraviton } from "@/lib/socket-client";
 import { AnimatedNumber } from "@repo/ui/animated-number";
 import { toast } from "@repo/ui/toast";
 import {

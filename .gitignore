@@ -18,6 +18,8 @@ out/
 build/
 dist/
 *.tsbuildinfo
+*.bun-build
+.*.bun-build
 
 # Turbo & Vercel
 .turbo/

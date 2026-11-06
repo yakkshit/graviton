@@ -1,35 +1,53 @@
 {
-  "name": "@yakkshit/graviton",
+  "name": "graviton",
   "version": "1.0.0",
-  "description": "The self-hosted, zero-trust AI coding cockpit. Control gravity, not just code.",
+  "description": "Your code is the center. AI orbits it. The self-hosted, zero-trust AI coding cockpit.",
   "type": "module",
   "bin": {
     "graviton": "./dist/index.js"
   },
   "main": "./dist/index.js",
   "files": [
-    "dist"
+    "dist",
+    "README.md",
+    "LICENSE"
   ],
   "publishConfig": {
     "access": "public"
   },
+  "scripts": {
+    "build": "bun build ./src/index.ts --outdir ./dist --target node --minify --banner=\"#!/usr/bin/env node\"",
+    "prepublishOnly": "bun run build && bun test",
+    "test": "bun test",
+    "check-types": "tsc --noEmit"
+  },
   "keywords": [
     "ai",
     "mcp",
-    "model-context-protocol",
-    "cockpit",
+    "coding",
+    "security",
     "zero-trust",
-    "ast",
-    "claude",
-    "cursor",
-    "graviton"
+    "cockpit",
+    "developer-tools",
+    "typescript",
+    "bun",
+    "git",
+    "ast"
   ],
+  "author": "Venkata Sai Yakkshit Reddy Asodi <yakkshit@proton.me>",
   "license": "MIT",
-  "scripts": {
-    "build": "bun build ./src/index.ts --target=node --outfile=./dist/index.js --banner=\"#!/usr/bin/env node\"",
-    "dev": "bun build --watch ./src/index.ts --target=node --outfile=./dist/index.js --banner=\"#!/usr/bin/env node\"",
-    "prepublishOnly": "bun run build",
-    "check-types": "tsc --noEmit"
+  "homepage": "https://github.com/yakkshit/graviton",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yakkshit/graviton.git",
+    "directory": "packages/cli"
+  },
+  "bugs": {
+    "url": "https://github.com/yakkshit/graviton/issues"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "bun": ">=1.0.0"
   },
   "dependencies": {
     "chalk": "^5.4.1",
