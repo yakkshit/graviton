@@ -73,18 +73,20 @@ export function GravityLoop() {
 
   // Listen to scroll progress to update active step
   useEffect(() => {
-    const unsubscribe = scrollYProgress.on("change", (progress) => {
-      // 4 steps distributed evenly across 0.0 to 1.0
-      if (progress < 0.28) {
+    const updateStep = (progress: number) => {
+      if (progress < 0.25) {
         setActiveStep(0);
-      } else if (progress < 0.55) {
+      } else if (progress < 0.5) {
         setActiveStep(1);
-      } else if (progress < 0.82) {
+      } else if (progress < 0.75) {
         setActiveStep(2);
       } else {
         setActiveStep(3);
       }
-    });
+    };
+
+    updateStep(scrollYProgress.get());
+    const unsubscribe = scrollYProgress.on("change", updateStep);
     return () => unsubscribe();
   }, [scrollYProgress]);
 
@@ -109,7 +111,7 @@ export function GravityLoop() {
 
         {/* Ambient background lighting */}
         <div
-          className="absolute right-1/4 top-1/2 -translate-y-1/2 w-[500px] h-[500px] rounded-full blur-[160px] opacity-20 pointer-events-none transition-all duration-700"
+          className="absolute right-1/4 top-1/2 -translate-y-1/2 w-125 h-125 rounded-full blur-[160px] opacity-20 pointer-events-none transition-all duration-700"
           style={{ backgroundColor: currentAccent.hex }}
         />
 
@@ -186,13 +188,13 @@ export function GravityLoop() {
 
             {/* Right Column: Visual State Container (7 cols) */}
             <div className="lg:col-span-7 flex items-center justify-center">
-              <div className="w-full max-w-2xl h-[420px] sm:h-[480px] md:h-[520px] rounded-2xl border border-white/10 bg-[#08080c]/80 backdrop-blur-2xl p-4 sm:p-6 shadow-2xl relative overflow-hidden flex flex-col justify-between">
+              <div className="w-full max-w-2xl h-105 sm:h-125 md:h-150 rounded-2xl border border-white/10 bg-[#08080c]/80 backdrop-blur-2xl p-4 sm:p-6 shadow-2xl relative overflow-hidden flex flex-col justify-between">
                 {/* Visualizer Top Bar */}
                 <div className="flex items-center justify-between border-b border-white/10 pb-3 text-xs font-mono">
                   <div className="flex items-center gap-2">
                     <span className="w-2.5 h-2.5 rounded-full bg-neutral-700" />
                     <span className="text-neutral-400">
-                      ORBIT_TELEMETRY // {STEPS[activeStep]?.tag}
+                      GRAVITON_TELEMETRY // {STEPS[activeStep]?.tag}
                     </span>
                   </div>
                   <span
@@ -320,13 +322,13 @@ function VisualMap({ currentAccent }: { currentAccent: { hex: string; rgb: strin
       className="w-full h-full flex flex-col justify-between items-center relative select-none font-mono"
     >
       {/* Interactive Orbiting SVG Graph */}
-      <div className="relative w-full h-[280px] sm:h-[300px] flex items-center justify-center">
+      <div className="relative h-70 sm:h-75 flex items-center justify-center">
         {/* Orbital concentric rings */}
         <div
-          className="absolute w-[260px] h-[260px] rounded-full border border-dashed opacity-25 animate-[spin_60s_linear_infinite]"
+          className="absolute w-65 h-65 rounded-full border border-dashed opacity-25 animate-[spin_60s_linear_infinite]"
           style={{ borderColor: currentAccent.hex }}
         />
-        <div className="absolute w-[180px] h-[180px] rounded-full border border-white/10" />
+        <div className="absolute w-45 h-45 rounded-full border border-white/10" />
 
         {/* Center Node: ORBIT CORE */}
         <div
@@ -398,7 +400,7 @@ function VisualMap({ currentAccent }: { currentAccent: { hex: string; rgb: strin
         </motion.div>
       </div>
 
-      <div className="w-full p-2.5 rounded-lg border border-white/10 bg-white/[0.03] flex items-center justify-between text-xs text-neutral-400">
+      <div className="w-full p-2.5 rounded-lg border border-white/10 bg-white/3 flex items-center justify-between text-xs text-neutral-400">
         <span>Knowledge Graph Completeness:</span>
         <span className="font-bold text-white flex items-center gap-1.5">
           <span className="w-2 h-2 rounded-full bg-emerald-400" />
@@ -534,7 +536,7 @@ function VisualConfidence({ currentAccent }: { currentAccent: { hex: string; rgb
 
         {/* Commit Chain */}
         <div className="space-y-2.5">
-          <div className="p-2.5 rounded-xl border border-white/10 bg-white/[0.03] flex items-center justify-between">
+          <div className="p-2.5 rounded-xl border border-white/10 bg-white/3 flex items-center justify-between">
             <div className="flex items-center gap-2.5">
               <div
                 className="w-6 h-6 rounded-lg flex items-center justify-center"
@@ -565,7 +567,7 @@ function VisualConfidence({ currentAccent }: { currentAccent: { hex: string; rgb
             </span>
           </div>
 
-          <div className="p-2.5 rounded-xl border border-white/10 bg-white/[0.03] flex items-center justify-between">
+          <div className="p-2.5 rounded-xl border border-white/10 bg-white/3 flex items-center justify-between">
             <div className="flex items-center gap-2.5">
               <div className="w-6 h-6 rounded-lg bg-emerald-500/15 text-emerald-400 flex items-center justify-center">
                 <GitCommit className="w-3.5 h-3.5" />
@@ -584,7 +586,7 @@ function VisualConfidence({ currentAccent }: { currentAccent: { hex: string; rgb
             </span>
           </div>
 
-          <div className="p-2.5 rounded-xl border border-white/10 bg-white/[0.03] flex items-center justify-between opacity-60">
+          <div className="p-2.5 rounded-xl border border-white/10 bg-white/3 flex items-center justify-between opacity-60">
             <div className="flex items-center gap-2.5">
               <div className="w-6 h-6 rounded-lg bg-white/5 text-neutral-400 flex items-center justify-center">
                 <GitCommit className="w-3.5 h-3.5" />

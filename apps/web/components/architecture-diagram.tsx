@@ -159,19 +159,17 @@ export function ArchitectureDiagram() {
           </div>
 
           {/* Flow Connector Line SVG between Row 1 nodes */}
-          <div className="absolute top-[125px] left-12 right-12 h-0.5 pointer-events-none -z-0">
+          <div className="absolute top-[125px] left-12 right-12 h-8 pointer-events-none -z-0">
             <svg className="w-full h-8 overflow-visible">
-              <motion.line
+              <line
                 x1="0"
                 y1="0"
                 x2="100%"
                 y2="0"
-                stroke="rgba(255,255,255,0.12)"
+                stroke={`rgba(${currentAccent.rgb}, 0.35)`}
                 strokeWidth="2"
                 strokeDasharray="6 6"
-                initial={{ pathLength: 0 }}
-                animate={isInView ? { pathLength: 1 } : {}}
-                transition={{ duration: 1.5, ease: "easeInOut" }}
+                className="animate-dash-flow"
               />
             </svg>
           </div>
@@ -197,14 +195,14 @@ export function ArchitectureDiagram() {
                     transition={{ duration: 0.6, delay: 0.7 + index * 0.15 }}
                     className={`p-6 rounded-2xl border transition-all duration-300 relative shadow-2xl ${
                       isCentral
-                        ? "bg-[#0d0d16]"
+                        ? "bg-[#0d0d16] animate-pulse-ring"
                         : "bg-[#0c0c12] border-white/10 hover:border-white/20"
                     }`}
                     style={
                       isCentral
                         ? {
                             borderColor: currentAccent.hex,
-                            boxShadow: `0 0 35px -5px rgba(${currentAccent.rgb}, 0.35)`,
+                            boxShadow: `0 0 60px rgba(${currentAccent.rgb}, 0.5)`,
                           }
                         : {}
                     }
@@ -221,17 +219,22 @@ export function ArchitectureDiagram() {
                       >
                         <Icon className="w-5 h-5" />
                       </div>
-                      {isCentral && (
-                        <span
-                          className="px-2 py-0.5 rounded text-[10px] font-mono font-bold"
-                          style={{
-                            backgroundColor: `rgba(${currentAccent.rgb}, 0.15)`,
-                            color: currentAccent.hex,
-                          }}
-                        >
-                          CENTRAL HUB
+                      <div className="flex items-center gap-2">
+                        {isCentral && (
+                          <span
+                            className="px-2 py-0.5 rounded text-[10px] font-mono font-bold"
+                            style={{
+                              backgroundColor: `rgba(${currentAccent.rgb}, 0.15)`,
+                              color: currentAccent.hex,
+                            }}
+                          >
+                            CENTRAL HUB
+                          </span>
+                        )}
+                        <span className="font-mono text-[10px] text-neutral-500">
+                          NODE 0{PRIMARY_NODES.length + index + 1}
                         </span>
-                      )}
+                      </div>
                     </div>
 
                     <div className="font-bold text-white text-base mb-1">
@@ -258,40 +261,45 @@ export function ArchitectureDiagram() {
             return (
               <div key={node.id} className="relative">
                 <div
-                  className={`p-5 rounded-2xl border ${
+                  className={`p-5 rounded-2xl border relative ${
                     isCentral
-                      ? "bg-[#0d0d16]"
+                      ? "bg-[#0d0d16] animate-pulse-ring"
                       : "bg-[#0a0a0e] border-white/10"
                   }`}
                   style={
                     isCentral
                       ? {
                           borderColor: currentAccent.hex,
-                          boxShadow: `0 0 25px rgba(${currentAccent.rgb}, 0.3)`,
+                          boxShadow: `0 0 35px rgba(${currentAccent.rgb}, 0.4)`,
                         }
                       : {}
                   }
                 >
-                  <div className="flex items-center gap-3 mb-2">
-                    <div
-                      className="w-8 h-8 rounded-lg flex items-center justify-center"
-                      style={{
-                        backgroundColor: isCentral
-                          ? currentAccent.hex
-                          : "rgba(255,255,255,0.08)",
-                        color: "#ffffff",
-                      }}
-                    >
-                      <Icon className="w-4 h-4" />
-                    </div>
-                    <div>
-                      <div className="font-bold text-white text-sm">
-                        {node.title}
+                  <div className="flex items-center justify-between mb-2">
+                    <div className="flex items-center gap-3">
+                      <div
+                        className="w-8 h-8 rounded-lg flex items-center justify-center"
+                        style={{
+                          backgroundColor: isCentral
+                            ? currentAccent.hex
+                            : "rgba(255,255,255,0.08)",
+                          color: "#ffffff",
+                        }}
+                      >
+                        <Icon className="w-4 h-4" />
                       </div>
-                      <div className="font-mono text-[11px] text-neutral-400">
-                        {node.subtitle}
+                      <div>
+                        <div className="font-bold text-white text-sm">
+                          {node.title}
+                        </div>
+                        <div className="font-mono text-[11px] text-neutral-400">
+                          {node.subtitle}
+                        </div>
                       </div>
                     </div>
+                    <span className="font-mono text-[10px] text-neutral-500">
+                      NODE 0{index + 1}
+                    </span>
                   </div>
                   <div className="font-mono text-xs text-neutral-400 pl-11">
                     {node.description}

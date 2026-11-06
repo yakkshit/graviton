@@ -21,7 +21,9 @@ export function Footer() {
       <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pt-28 pb-24 text-center space-y-8">
         <div
           className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-150 h-87.5 rounded-full blur-[160px] opacity-25 pointer-events-none"
-          style={{ backgroundColor: currentAccent.hex }}
+          style={{
+            background: `radial-gradient(circle at center, rgba(${currentAccent.rgb}, 0.25) 0%, transparent 70%)`,
+          }}
         />
 
         <div className="relative space-y-4">
@@ -33,8 +35,14 @@ export function Footer() {
             <span>TAKE BACK YOUR VELOCITY</span>
           </div>
 
-          <h2 className="text-4xl sm:text-6xl lg:text-7xl font-black tracking-tight text-white font-sans">
-            Stop letting AI drive blind.
+          <h2 className="text-4xl sm:text-6xl lg:text-7xl font-black tracking-tight text-white font-sans relative">
+            <span
+              className="absolute -inset-x-8 -inset-y-4 blur-2xl opacity-20 pointer-events-none rounded-full"
+              style={{
+                background: `radial-gradient(circle, rgba(${currentAccent.rgb}, 0.35) 0%, transparent 70%)`,
+              }}
+            />
+            <span className="relative">Stop letting AI drive blind.</span>
           </h2>
 
           <p className="text-sm sm:text-base text-neutral-400 max-w-xl mx-auto">
@@ -50,10 +58,10 @@ export function Footer() {
               href="https://github.com"
               target="_blank"
               rel="noreferrer"
-              className="px-8 py-4 rounded-xl font-semibold text-sm text-white flex items-center justify-center gap-2 shadow-2xl transition-all duration-300 cursor-pointer group"
+              className="px-8 py-4 rounded-xl font-semibold text-sm text-white flex items-center justify-center gap-2 shadow-2xl transition-all duration-300 cursor-pointer group hover:brightness-110 active:scale-98"
               style={{
                 backgroundColor: currentAccent.hex,
-                boxShadow: `0 0 40px -5px rgba(${currentAccent.rgb}, 0.55)`,
+                boxShadow: `0 0 40px rgba(${currentAccent.rgb}, 0.6)`,
               }}
             >
               <span>Deploy Your Cockpit</span>
@@ -62,7 +70,7 @@ export function Footer() {
           </Magnetic>
 
           <Magnetic intensity={0.2} range={60}>
-            <div className="flex items-center gap-2 px-5 py-3.5 rounded-xl border border-white/10 bg-white/3 text-xs text-neutral-300">
+            <div className="flex items-center gap-2 px-5 py-3.5 rounded-xl border border-white/10 bg-white/3 text-xs text-neutral-300 shadow-[inset_0_1px_0_rgba(255,255,255,0.05)]">
               <Terminal className="w-4 h-4 text-neutral-500" />
               <span>bunx @yakkshit/graviton@latest</span>
             </div>
@@ -136,27 +144,27 @@ export function Footer() {
             </div>
             <ul className="space-y-2 text-xs">
               <li>
-                <a href="#features" className="hover:text-white transition-colors">
+                <a href="#features" className="hover:translate-x-1 hover:text-white transition-all duration-200 inline-block">
                   Features
                 </a>
               </li>
               <li>
-                <a href="#gravity-loop" className="hover:text-white transition-colors">
+                <a href="#gravity-loop" className="hover:translate-x-1 hover:text-white transition-all duration-200 inline-block">
                   The Gravity Loop
                 </a>
               </li>
               <li>
-                <a href="#architecture" className="hover:text-white transition-colors">
+                <a href="#architecture" className="hover:translate-x-1 hover:text-white transition-all duration-200 inline-block">
                   Architecture
                 </a>
               </li>
               <li>
-                <a href="https://github.com" className="hover:text-white transition-colors">
+                <a href="https://github.com" className="hover:translate-x-1 hover:text-white transition-all duration-200 inline-block">
                   Documentation
                 </a>
               </li>
               <li>
-                <a href="https://github.com" className="hover:text-white transition-colors">
+                <a href="https://github.com" className="hover:translate-x-1 hover:text-white transition-all duration-200 inline-block">
                   Changelog (v1.0.0)
                 </a>
               </li>
@@ -170,22 +178,22 @@ export function Footer() {
             </div>
             <ul className="space-y-2 text-xs">
               <li>
-                <a href="#" className="hover:text-white transition-colors">
+                <a href="#" className="hover:translate-x-1 hover:text-white transition-all duration-200 inline-block">
                   About Graviton
                 </a>
               </li>
               <li>
-                <a href="#" className="hover:text-white transition-colors">
+                <a href="#" className="hover:translate-x-1 hover:text-white transition-all duration-200 inline-block">
                   Engineering Blog
                 </a>
               </li>
               <li>
-                <a href="#" className="hover:text-white transition-colors">
+                <a href="#" className="hover:translate-x-1 hover:text-white transition-all duration-200 inline-block">
                   Community Discord
                 </a>
               </li>
               <li>
-                <a href="#" className="hover:text-white transition-colors">
+                <a href="#" className="hover:translate-x-1 hover:text-white transition-all duration-200 inline-block">
                   Careers (We're Hiring)
                 </a>
               </li>
@@ -199,22 +207,22 @@ export function Footer() {
             </div>
             <ul className="space-y-2 text-xs">
               <li>
-                <a href="#" className="hover:text-white transition-colors">
+                <a href="#" className="hover:translate-x-1 hover:text-white transition-all duration-200 inline-block">
                   Zero Data Retention
                 </a>
               </li>
               <li>
-                <a href="#" className="hover:text-white transition-colors">
+                <a href="#" className="hover:translate-x-1 hover:text-white transition-all duration-200 inline-block">
                   Self-Hosting Security
                 </a>
               </li>
               <li>
-                <a href="#" className="hover:text-white transition-colors">
+                <a href="#" className="hover:translate-x-1 hover:text-white transition-all duration-200 inline-block">
                   Privacy Policy
                 </a>
               </li>
               <li>
-                <a href="#" className="hover:text-white transition-colors">
+                <a href="#" className="hover:translate-x-1 hover:text-white transition-all duration-200 inline-block">
                   Terms of Service
                 </a>
               </li>

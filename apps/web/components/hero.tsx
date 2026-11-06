@@ -170,7 +170,7 @@ export function Hero() {
 }
 
 /**
- * 3D Tilted Interactive Orbit WebUI Mockup
+ * 3D Tilted Interactive Graviton WebUI Mockup
  */
 function HeroMockup() {
   const { currentAccent } = useAccentTheme();
@@ -180,26 +180,29 @@ function HeroMockup() {
   );
 
   return (
-    <div className="relative mx-auto max-w-5xl perspective-[1400px]">
+    <div className="relative mx-auto max-w-5xl perspective-[2000px]">
       {/* Outer ambient glow reacting to accent */}
       <div
-        className="absolute -inset-1 rounded-2xl blur-2xl opacity-30 transition-all duration-700 pointer-events-none"
+        className="absolute -inset-2 rounded-3xl blur-3xl opacity-40 transition-all duration-700 pointer-events-none"
         style={{
           background: `radial-gradient(circle at 50% 30%, ${currentAccent.hex}, transparent 70%)`,
         }}
       />
 
       <motion.div
+        animate={{ y: [0, -10, 0] }}
+        transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
         whileHover={{
-          scale: 1.015,
-          rotateX: 2,
+          scale: 1.03,
+          rotateX: 0,
           transition: { duration: 0.4, ease: "easeOut" },
         }}
         style={{
           transform: "rotateX(8deg)",
           transformStyle: "preserve-3d",
+          boxShadow: `0 0 80px rgba(${currentAccent.rgb}, 0.3)`,
         }}
-        className="relative rounded-2xl border border-white/15 bg-[#09090c]/90 backdrop-blur-2xl shadow-[0_30px_90px_rgba(0,0,0,0.85)] overflow-hidden transition-all duration-500 will-change-transform"
+        className="relative rounded-2xl border border-white/15 bg-[#09090c]/90 backdrop-blur-2xl overflow-hidden transition-all duration-500 will-change-transform"
       >
         {/* Title Bar */}
         <div className="px-4 py-3 border-b border-white/10 bg-[#0d0d12]/90 flex items-center justify-between">
@@ -208,7 +211,7 @@ function HeroMockup() {
             <div className="w-3 h-3 rounded-full bg-[#ffbd2e]/80" />
             <div className="w-3 h-3 rounded-full bg-[#27c93f]/80" />
             <span className="ml-3 font-mono text-xs text-neutral-400 hidden sm:inline">
-              orbit-cockpit // session-id: ctx-9482-mcphub
+              graviton-cockpit // session-id: ctx-9482-mcphub
             </span>
           </div>
 
@@ -314,7 +317,7 @@ function HeroMockup() {
                   <span className="text-red-500 mr-2">-</span>
                   <span>&nbsp;&nbsp;await dangerouslyExecSystemProcess(plan.script);</span>
                 </div>
-                {/* Orbit Injected Safe Code */}
+                {/* Graviton Injected Safe Code */}
                 <div
                   className="p-1 rounded text-emerald-300 border-l-2"
                   style={{
@@ -423,6 +426,15 @@ function HeroMockup() {
           </div>
         </div>
       </motion.div>
+
+      {/* Subtle grid reflection below the mockup */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute -bottom-12 left-1/2 -translate-x-1/2 w-4/5 h-24 opacity-15 blur-md overflow-hidden transform-[scaleY(-1)]"
+        style={{
+          background: `radial-gradient(ellipse at center, rgba(${currentAccent.rgb}, 0.6) 0%, transparent 70%)`,
+        }}
+      />
     </div>
   );
 }

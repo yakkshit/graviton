@@ -8,7 +8,7 @@ import { Footer } from "@/components/footer";
 
 export default function Home() {
   return (
-    <main className="relative min-h-screen bg-[#050505] text-[#EDEDED] overflow-x-hidden">
+    <main className="relative min-h-screen bg-[#050505] text-[#EDEDED] overflow-x-clip">
       {/* Phase 3: The Hero Section */}
       <Hero />
 

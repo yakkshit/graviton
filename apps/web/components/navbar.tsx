@@ -15,7 +15,7 @@ export function Navbar() {
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 20);
+      setScrolled(window.scrollY > 50);
     };
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
@@ -32,7 +32,7 @@ export function Navbar() {
     <header
       className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${
         scrolled
-          ? "bg-[#050505]/85 backdrop-blur-xl border-b border-white/10 py-3 shadow-2xl"
+          ? "bg-[#050505]/80 backdrop-blur-md border-b border-white/10 py-3 shadow-2xl"
           : "bg-transparent py-5"
       }`}
     >
@@ -60,7 +60,7 @@ export function Navbar() {
                 <span className="text-base font-extrabold tracking-tight text-white flex items-center gap-1.5 font-sans">
                   Graviton
                   <span
-                    className="w-1.5 h-1.5 rounded-full inline-block animate-pulse"
+                    className="w-1.5 h-1.5 rounded-full inline-block animate-pulse shadow-[0_0_8px_var(--color-accent)]"
                     style={{ backgroundColor: currentAccent.hex }}
                   />
                 </span>
@@ -68,13 +68,13 @@ export function Navbar() {
             </Link>
           </Magnetic>
 
-          {/* Desktop Navigation Links with Magnetic pull */}
-          <nav className="hidden md:flex items-center gap-1 px-3 py-1.5 rounded-full border border-white/10 bg-[#0a0a0a]/70 backdrop-blur-md shadow-inner">
+          {/* Desktop Navigation Links with Magnetic pull & animated underline */}
+          <nav className="hidden md:flex items-center gap-2 px-4 py-1.5 rounded-full border border-white/10 bg-[#0a0a0a]/70 backdrop-blur-md shadow-inner">
             {navLinks.map((link) => (
               <Magnetic key={link.href} intensity={0.2} range={50}>
                 <Link
                   href={link.href}
-                  className="px-3.5 py-1.5 text-xs font-mono text-neutral-300 hover:text-white transition-colors duration-200 rounded-full hover:bg-white/6 block"
+                  className="relative px-3 py-1 text-xs font-mono text-neutral-300 hover:text-white transition-colors duration-200 block after:absolute after:bottom-0 after:left-2 after:right-2 after:h-[2px] after:w-0 hover:after:w-[calc(100%-16px)] after:bg-[var(--color-accent)] after:transition-all after:duration-300"
                 >
                   {link.label}
                 </Link>
