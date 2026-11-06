@@ -188,7 +188,7 @@ export function ThemeCustomizer() {
               />
               <div className="relative z-10 space-y-3">
                 <div className="flex items-center justify-between text-xs font-mono">
-                  <span className="text-neutral-400">orbit.cockpit // status</span>
+                  <span className="text-neutral-400">graviton.cockpit // status</span>
                   <span
                     className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-semibold"
                     style={{
@@ -234,7 +234,7 @@ export function ThemeCustomizer() {
               className="w-full text-xs text-neutral-400 hover:text-white flex items-center justify-center gap-1.5 border border-white/5 hover:border-white/10 cursor-pointer"
             >
               <RotateCcw className="w-3.5 h-3.5" />
-              <span>Reset to Orbit Defaults</span>
+              <span>Reset to Graviton Defaults</span>
             </Button>
           </div>
         </div>

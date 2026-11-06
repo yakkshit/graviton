@@ -127,7 +127,7 @@ export function ShareSessionModal({ isOpen, onClose }: ShareSessionModalProps) {
             </div>
 
             {/* Tunnel Status Pill */}
-            <div className="mt-4 flex items-center justify-between p-3 rounded-xl bg-white/[0.03] border border-white/5 text-xs font-mono">
+            <div className="mt-4 flex items-center justify-between p-3 rounded-xl bg-white/3 border border-white/5 text-xs font-mono">
               <div className="flex items-center gap-2">
                 {effectiveTunnel ? (
                   <>
@@ -314,7 +314,7 @@ export function ShareSessionModal({ isOpen, onClose }: ShareSessionModalProps) {
 
             {/* Security Warning Callout */}
             <div className="mt-5 p-3 rounded-xl bg-amber-500/10 border border-amber-500/25 flex items-start gap-2.5">
-              <ShieldAlert className="w-4 h-4 text-amber-400 flex-shrink-0 mt-0.5" />
+              <ShieldAlert className="w-4 h-4 text-amber-400 shrink-0 mt-0.5" />
               <p className="text-xs text-amber-200/90 leading-relaxed font-mono">
                 <strong>SECURITY WARNING:</strong> Anyone with this link and key can view, approve, or block AI edits on your codebase. Only share with trusted team members or authorized cloud agents.
               </p>

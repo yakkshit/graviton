@@ -193,25 +193,25 @@ export class CockpitWebSocketServer {
             }
           }
         } catch (err) {
-          console.error("[Orbit WS] Error parsing client message:", err);
+          console.error("[Graviton WS] Error parsing client message:", err);
         }
       });
 
       ws.on("close", () => {
         this.clients.delete(ws);
         console.log(
-          `[Orbit WS] Cockpit client disconnected. Active clients: ${this.clients.size}`
+          `[Graviton WS] Cockpit client disconnected. Active clients: ${this.clients.size}`
         );
       });
     });
 
     this.httpServer.listen(this.port, () => {
-      console.log(`[Orbit WS] Bridge WebSocket & HTTP Server active on port ${this.port}`);
+      console.log(`[Graviton WS] Bridge WebSocket & HTTP Server active on port ${this.port}`);
       if (this.authKey) {
-        console.log(`[Orbit WS] 🔒 Authentication ENFORCED for all incoming connections.`);
+        console.log(`[Graviton WS] 🔒 Authentication ENFORCED for all incoming connections.`);
       }
       if (this.tunnelUrl) {
-        console.log(`[Orbit WS] 🌐 Public Tunnel active: ${this.tunnelUrl}`);
+        console.log(`[Graviton WS] 🌐 Public Tunnel active: ${this.tunnelUrl}`);
       }
     });
   }

@@ -185,8 +185,8 @@ export function FileTree() {
           }}
           className={`flex items-center justify-between px-2 py-1.5 rounded-lg cursor-pointer transition-all duration-150 ${
             isSelected
-              ? "bg-white/[0.08] text-white font-medium"
-              : "text-neutral-400 hover:text-neutral-200 hover:bg-white/[0.03]"
+              ? "bg-white/8 text-white font-medium"
+              : "text-neutral-400 hover:text-neutral-200 hover:bg-white/3"
           }`}
           style={{
             paddingLeft: `${level * 14 + 8}px`,
@@ -224,7 +224,7 @@ export function FileTree() {
 
           {/* Status pill for modified/diffed files */}
           {diffStatus && (
-            <div className="ml-2 flex-shrink-0">
+            <div className="ml-2 shrink-0">
               {diffStatus === "pending" && (
                 <span
                   className="px-1.5 py-0.2 rounded text-[9px] font-bold uppercase tracking-wider"

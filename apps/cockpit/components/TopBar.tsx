@@ -51,7 +51,7 @@ export function TopBar() {
             className="flex items-center gap-2 group cursor-pointer"
             title="Back to Graviton Home"
           >
-            <div className="w-7 h-7 rounded-lg border border-white/15 bg-white/[0.04] flex items-center justify-center transition-colors group-hover:border-white/30">
+            <div className="w-7 h-7 rounded-lg border border-white/15 bg-white/4 flex items-center justify-center transition-colors group-hover:border-white/30">
               <OrbitIcon
                 className="w-4 h-4 transition-transform group-hover:rotate-180"
                 style={{ color: currentAccent.hex }}
@@ -65,7 +65,7 @@ export function TopBar() {
           <span className="text-neutral-600">/</span>
 
           {/* Repository identifier */}
-          <div className="flex items-center gap-2 px-2.5 py-1 rounded-md bg-white/[0.03] border border-white/5 text-xs font-mono">
+          <div className="flex items-center gap-2 px-2.5 py-1 rounded-md bg-white/3 border border-white/5 text-xs font-mono">
             <GitBranch className="w-3.5 h-3.5 text-neutral-400" />
             <span className="text-neutral-200 font-medium">context-code</span>
             <span className="text-neutral-500">({gitBranch})</span>
@@ -115,7 +115,7 @@ export function TopBar() {
           <button
             type="button"
             onClick={() => setIsShareModalOpen(true)}
-            className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-white/10 bg-white/[0.04] hover:bg-white/[0.08] text-xs font-mono text-neutral-200 hover:text-white transition-all group cursor-pointer"
+            className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-white/10 bg-white/4 hover:bg-white/8 text-xs font-mono text-neutral-200 hover:text-white transition-all group cursor-pointer"
             title="Share Session & Remote Access"
           >
             <Share2
@@ -153,7 +153,7 @@ export function TopBar() {
           <button
             type="button"
             onClick={() => window.dispatchEvent(new CustomEvent("graviton:open-palette"))}
-            className="hidden sm:flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg border border-white/10 bg-white/[0.03] hover:bg-white/[0.08] text-xs font-mono text-neutral-400 hover:text-white transition-colors cursor-pointer"
+            className="hidden sm:flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg border border-white/10 bg-white/3 hover:bg-white/8 text-xs font-mono text-neutral-400 hover:text-white transition-colors cursor-pointer"
             title="Open Command Palette (Cmd+K)"
           >
             <Command className="w-3.5 h-3.5" />
@@ -170,7 +170,7 @@ export function TopBar() {
             href="http://localhost:3000"
             target="_blank"
             rel="noreferrer"
-            className="p-2 rounded-lg border border-white/10 bg-white/[0.03] hover:bg-white/[0.08] text-neutral-400 hover:text-white transition-colors"
+            className="p-2 rounded-lg border border-white/10 bg-white/3 hover:bg-white/8 text-neutral-400 hover:text-white transition-colors"
             title="Open Graviton Marketing Site"
           >
             <ExternalLink className="w-4 h-4" />

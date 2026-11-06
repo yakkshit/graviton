@@ -108,3 +108,4 @@ export function DiffViewerSkeleton({ lines = 12 }: { lines?: number }) {
     </div>
   );
 }
+

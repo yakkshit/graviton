@@ -20,12 +20,12 @@ export function Footer() {
       {/* ================================================================= */}
       <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pt-28 pb-24 text-center space-y-8">
         <div
-          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[350px] rounded-full blur-[160px] opacity-25 pointer-events-none"
+          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-150 h-87.5 rounded-full blur-[160px] opacity-25 pointer-events-none"
           style={{ backgroundColor: currentAccent.hex }}
         />
 
         <div className="relative space-y-4">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-white/10 bg-white/[0.03] text-xs text-neutral-300">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-white/10 bg-white/3 text-xs text-neutral-300">
             <span
               className="w-2 h-2 rounded-full animate-pulse"
               style={{ backgroundColor: currentAccent.hex }}
@@ -62,7 +62,7 @@ export function Footer() {
           </Magnetic>
 
           <Magnetic intensity={0.2} range={60}>
-            <div className="flex items-center gap-2 px-5 py-3.5 rounded-xl border border-white/10 bg-white/[0.03] text-xs text-neutral-300">
+            <div className="flex items-center gap-2 px-5 py-3.5 rounded-xl border border-white/10 bg-white/3 text-xs text-neutral-300">
               <Terminal className="w-4 h-4 text-neutral-500" />
               <span>bunx @yakkshit/graviton@latest</span>
             </div>
@@ -82,7 +82,7 @@ export function Footer() {
           {/* Brand Column (2 cols) */}
           <div className="md:col-span-2 space-y-4">
             <Link href="/" className="flex items-center gap-2.5">
-              <div className="w-8 h-8 rounded-lg border border-white/15 bg-white/[0.04] flex items-center justify-center">
+              <div className="w-8 h-8 rounded-lg border border-white/15 bg-white/4 flex items-center justify-center">
                 <OrbitIcon
                   className="w-4 h-4"
                   style={{ color: currentAccent.hex }}
@@ -104,7 +104,7 @@ export function Footer() {
                 target="_blank"
                 rel="noreferrer"
                 aria-label="GitHub"
-                className="p-2 rounded-lg border border-white/10 bg-white/[0.02] hover:bg-white/[0.06] hover:text-white transition-colors"
+                className="p-2 rounded-lg border border-white/10 bg-white/2 hover:bg-white/6 hover:text-white transition-colors"
               >
                 <GithubIcon className="w-4 h-4" />
               </a>
@@ -113,7 +113,7 @@ export function Footer() {
                 target="_blank"
                 rel="noreferrer"
                 aria-label="Twitter / X"
-                className="p-2 rounded-lg border border-white/10 bg-white/[0.02] hover:bg-white/[0.06] hover:text-white transition-colors"
+                className="p-2 rounded-lg border border-white/10 bg-white/2 hover:bg-white/6 hover:text-white transition-colors"
               >
                 <TwitterXIcon className="w-4 h-4" />
               </a>
@@ -122,7 +122,7 @@ export function Footer() {
                 target="_blank"
                 rel="noreferrer"
                 aria-label="Discord"
-                className="p-2 rounded-lg border border-white/10 bg-white/[0.02] hover:bg-white/[0.06] hover:text-white transition-colors"
+                className="p-2 rounded-lg border border-white/10 bg-white/2 hover:bg-white/6 hover:text-white transition-colors"
               >
                 <DiscordIcon className="w-4 h-4" />
               </a>

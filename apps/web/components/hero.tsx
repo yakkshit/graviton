@@ -33,7 +33,7 @@ export function Hero() {
     <section className="relative min-h-screen pt-32 pb-20 px-4 sm:px-6 lg:px-8 flex flex-col items-center justify-center overflow-hidden bg-cockpit-grid">
       {/* Dynamic ambient radial lighting matching current accent */}
       <div
-        className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[720px] h-[520px] rounded-full blur-[170px] pointer-events-none transition-all duration-700 opacity-25"
+        className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-180 h-130 rounded-full blur-[170px] pointer-events-none transition-all duration-700 opacity-25"
         style={{ backgroundColor: currentAccent.hex }}
       />
 
@@ -43,7 +43,7 @@ export function Hero() {
           initial={{ opacity: 0, y: -15 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, ease: "easeOut" }}
-          className="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full border border-white/10 bg-white/[0.04] backdrop-blur-md text-xs font-mono"
+          className="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full border border-white/10 bg-white/4 backdrop-blur-md text-xs font-mono"
         >
           <span
             className="w-2 h-2 rounded-full animate-ping"
@@ -121,7 +121,7 @@ export function Hero() {
               href="https://github.com"
               target="_blank"
               rel="noreferrer"
-              className="w-full sm:w-auto px-6 py-3.5 rounded-xl font-medium text-sm text-neutral-300 border border-white/10 bg-white/[0.03] hover:bg-white/[0.08] hover:text-white transition-all duration-200 flex items-center justify-center gap-2 cursor-pointer"
+              className="w-full sm:w-auto px-6 py-3.5 rounded-xl font-medium text-sm text-neutral-300 border border-white/10 bg-white/3 hover:bg-white/8 hover:text-white transition-all duration-200 flex items-center justify-center gap-2 cursor-pointer"
             >
               <GithubIcon className="w-4 h-4" />
               <span>View on GitHub</span>
@@ -180,7 +180,7 @@ function HeroMockup() {
   );
 
   return (
-    <div className="relative mx-auto max-w-5xl [perspective:1400px]">
+    <div className="relative mx-auto max-w-5xl perspective-[1400px]">
       {/* Outer ambient glow reacting to accent */}
       <div
         className="absolute -inset-1 rounded-2xl blur-2xl opacity-30 transition-all duration-700 pointer-events-none"
@@ -231,7 +231,7 @@ function HeroMockup() {
         </div>
 
         {/* Cockpit Body (3 Panes: Tree, Editor Diff, Action Control) */}
-        <div className="grid grid-cols-1 md:grid-cols-12 min-h-[420px] text-left font-mono">
+        <div className="grid grid-cols-1 md:grid-cols-12 min-h-105 text-left font-mono">
           {/* Pane 1: File Architecture Tree (3 cols) */}
           <div className="hidden md:flex md:col-span-3 border-r border-white/10 bg-[#07070a]/60 p-4 flex-col justify-between">
             <div className="space-y-4">
@@ -240,7 +240,7 @@ function HeroMockup() {
                 <span>Target Repository</span>
               </div>
               <div className="space-y-1 text-xs">
-                <div className="p-1.5 rounded bg-white/[0.04] text-white flex items-center gap-2">
+                <div className="p-1.5 rounded bg-white/4 text-white flex items-center gap-2">
                   <span className="text-neutral-500">📁</span>
                   <span>src/orchestrator</span>
                 </div>
@@ -272,7 +272,7 @@ function HeroMockup() {
             </div>
 
             {/* Tree Footer / Health */}
-            <div className="p-2.5 rounded-lg border border-white/5 bg-white/[0.02] text-[11px] text-neutral-400 space-y-1">
+            <div className="p-2.5 rounded-lg border border-white/5 bg-white/2 text-[11px] text-neutral-400 space-y-1">
               <div className="flex justify-between">
                 <span>Git Status:</span>
                 <span className="text-emerald-400 font-semibold">● CLEAN_SYNC</span>
@@ -365,7 +365,7 @@ function HeroMockup() {
               </div>
 
               {/* Agent card */}
-              <div className="p-3 rounded-lg border border-white/10 bg-white/[0.03] space-y-1.5">
+              <div className="p-3 rounded-lg border border-white/10 bg-white/3 space-y-1.5">
                 <div className="text-[10px] text-neutral-500 uppercase">Proposing Agent</div>
                 <div className="text-xs font-semibold text-white flex items-center gap-1.5">
                   <Cpu className="w-3.5 h-3.5 text-blue-400" />
@@ -375,7 +375,7 @@ function HeroMockup() {
               </div>
 
               {/* Risk Level */}
-              <div className="p-3 rounded-lg border border-white/10 bg-white/[0.03] space-y-1.5">
+              <div className="p-3 rounded-lg border border-white/10 bg-white/3 space-y-1.5">
                 <div className="text-[10px] text-neutral-500 uppercase">Impact Assessment</div>
                 <div className="flex items-center justify-between">
                   <span className="text-xs text-white font-medium">Risk Score</span>
@@ -398,14 +398,14 @@ function HeroMockup() {
                   boxShadow: `0 0 20px -3px rgba(${currentAccent.rgb}, 0.5)`,
                 }}
               >
-                <Check className="w-3.5 h-3.5 stroke-[3]" />
+                <Check className="w-3.5 h-3.5 stroke-3" />
                 <span>Approve & Apply (⏎)</span>
               </button>
 
               <button
                 type="button"
                 onClick={() => setStatus("blocked")}
-                className="w-full py-2 px-3 rounded-lg text-xs font-medium text-neutral-300 border border-white/10 bg-white/[0.04] hover:bg-red-500/10 hover:border-red-500/40 hover:text-red-300 transition-colors flex items-center justify-center gap-1.5 cursor-pointer"
+                className="w-full py-2 px-3 rounded-lg text-xs font-medium text-neutral-300 border border-white/10 bg-white/4 hover:bg-red-500/10 hover:border-red-500/40 hover:text-red-300 transition-colors flex items-center justify-center gap-1.5 cursor-pointer"
               >
                 <ShieldAlert className="w-3.5 h-3.5" />
                 <span>Block Edit (Esc)</span>

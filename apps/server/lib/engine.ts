@@ -26,7 +26,7 @@ export class GitEngine {
       await this.git.init();
       // Add initial files if any exist
       await this.git.add(".");
-      await this.git.commit("orbit(init): baseline repository state");
+      await this.git.commit("graviton(init): baseline repository state");
     }
     this.initialized = true;
   }
@@ -56,7 +56,7 @@ export class GitEngine {
   async createSnapshot(message: string): Promise<string> {
     try {
       await this.git.add(".");
-      const commitResult = await this.git.commit(`orbit(snapshot): ${message}`, {
+      const commitResult = await this.git.commit(`graviton(snapshot): ${message}`, {
         "--allow-empty": null,
       });
       return commitResult.commit || (await this.git.revparse(["HEAD"]));

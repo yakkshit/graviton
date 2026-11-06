@@ -44,7 +44,7 @@ export function Navbar() {
               href="/"
               className="flex items-center gap-2.5 group cursor-pointer"
             >
-              <div className="relative w-8 h-8 rounded-lg border border-white/10 bg-white/[0.04] flex items-center justify-center overflow-hidden transition-all duration-300 group-hover:border-white/30">
+              <div className="relative w-8 h-8 rounded-lg border border-white/10 bg-white/4 flex items-center justify-center overflow-hidden transition-all duration-300 group-hover:border-white/30">
                 <div
                   className="absolute inset-0 opacity-40 blur-sm transition-opacity group-hover:opacity-100"
                   style={{
@@ -74,7 +74,7 @@ export function Navbar() {
               <Magnetic key={link.href} intensity={0.2} range={50}>
                 <Link
                   href={link.href}
-                  className="px-3.5 py-1.5 text-xs font-mono text-neutral-300 hover:text-white transition-colors duration-200 rounded-full hover:bg-white/[0.06] block"
+                  className="px-3.5 py-1.5 text-xs font-mono text-neutral-300 hover:text-white transition-colors duration-200 rounded-full hover:bg-white/6 block"
                 >
                   {link.label}
                 </Link>
@@ -93,7 +93,7 @@ export function Navbar() {
                 href="https://github.com"
                 target="_blank"
                 rel="noreferrer"
-                className="p-2 rounded-lg border border-white/10 bg-white/[0.03] hover:bg-white/[0.08] text-neutral-300 hover:text-white transition-all duration-200 flex items-center gap-1.5 text-xs font-mono cursor-pointer"
+                className="p-2 rounded-lg border border-white/10 bg-white/3 hover:bg-white/8 text-neutral-300 hover:text-white transition-all duration-200 flex items-center gap-1.5 text-xs font-mono cursor-pointer"
               >
                 <GithubIcon className="w-4 h-4" />
                 <span className="hidden lg:inline text-neutral-400">★</span>
@@ -125,7 +125,7 @@ export function Navbar() {
             <ThemeCustomizer />
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="p-2 rounded-lg border border-white/10 bg-white/[0.04] text-neutral-300 hover:text-white"
+              className="p-2 rounded-lg border border-white/10 bg-white/4 text-neutral-300 hover:text-white"
             >
               {mobileMenuOpen ? (
                 <X className="w-5 h-5" />
@@ -145,7 +145,7 @@ export function Navbar() {
                   key={link.href}
                   href={link.href}
                   onClick={() => setMobileMenuOpen(false)}
-                  className="px-3 py-2 text-sm font-mono text-neutral-300 hover:text-white hover:bg-white/[0.06] rounded-lg"
+                  className="px-3 py-2 text-sm font-mono text-neutral-300 hover:text-white hover:bg-white/6 rounded-lg"
                 >
                   {link.label}
                 </Link>
