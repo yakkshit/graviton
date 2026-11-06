@@ -40,7 +40,6 @@ yarn-error.log*
 Thumbs.db
 *.pem
 *.tgz
-bun.lockb
 
 # My Local .env files - ignore all
 .env.local.env
