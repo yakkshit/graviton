@@ -22,18 +22,12 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          - os: macos-14
+          - os: macos-latest
             target: bun-darwin-arm64
             artifact: graviton-darwin-arm64
-          - os: macos-13
-            target: bun-darwin-x64
-            artifact: graviton-darwin-x64
           - os: ubuntu-latest
             target: bun-linux-x64
             artifact: graviton-linux-x64
-          - os: ubuntu-latest
-            target: bun-linux-arm64
-            artifact: graviton-linux-arm64
           - os: windows-latest
             target: bun-windows-x64
             artifact: graviton-win-x64.exe
