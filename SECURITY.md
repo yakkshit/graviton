@@ -30,3 +30,4 @@ Instead, please send an encrypted or direct email report to:
 - **Initial Response:** Within 48 hours acknowledging receipt of your report.
 - **Status Update:** Within 7 days with a triage assessment and target patch date.
 - **Disclosure Policy:** We practice coordinated vulnerability disclosure. We will credit you in the release notes once the patch is published.
+

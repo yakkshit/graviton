@@ -23,3 +23,4 @@ Please include a summary of the change and which issue it fixes. Also include re
 - [ ] I have tested changes locally using `bun run build` and `bun test`.
 - [ ] All new and existing tests passed without errors.
 - [ ] Any UI changes respect the dynamic accent theme engine (`var(--color-accent)`).
+

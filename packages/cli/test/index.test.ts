@@ -1,4 +1,5 @@
 import { describe, it, expect } from "bun:test";
+import { resolve } from "node:path";
 
 describe("Graviton CLI", () => {
   it("exports a valid version and module definition", () => {
@@ -6,7 +7,8 @@ describe("Graviton CLI", () => {
   });
 
   it("binary target compiles without errors", async () => {
-    const proc = Bun.spawn(["node", "./dist/index.js", "--version"], {
+    const distPath = resolve(import.meta.dir, "../dist/index.js");
+    const proc = Bun.spawn(["node", distPath, "--version"], {
       stdout: "pipe",
     });
     const output = await new Response(proc.stdout).text();

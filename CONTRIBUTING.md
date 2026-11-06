@@ -53,3 +53,4 @@ Thank you for your interest in contributing to Graviton! As a self-hosted, zero-
 ## License
 
 By contributing to Graviton, you agree that your contributions will be licensed under the project's [MIT License](./LICENSE).
+

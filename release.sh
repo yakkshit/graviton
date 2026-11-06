@@ -17,12 +17,12 @@ YELLOW='\033[1;33m'
 RED='\033[0;31m'
 NC='\033[0m'
 
+export NEXT_TELEMETRY_DISABLED=1
+
 # Step 1: Build monorepo packages
-echo -e "${BLUE}[1/6] Building monorepo...${NC}"
+echo -e "${BLUE}[1/6] Building monorepo packages...${NC}"
 bun run --cwd packages/cli build
 bun run --cwd apps/server build
-bun run --cwd apps/web build || true
-bun run --cwd apps/cockpit build || true
 
 # Step 2: Run tests
 echo -e "${BLUE}[2/6] Running tests...${NC}"
@@ -40,10 +40,12 @@ cd ../..
 
 # Step 4: Build Python Package
 echo -e "${BLUE}[4/6] Building Python package...${NC}"
-if command -v python3 &>/dev/null; then
+if python3 -c "import sys" 2>/dev/null; then
   cd packages/python
   python3 -m build || echo -e "${YELLOW}Python build tools not installed locally; will run in CI.${NC}"
   cd ../..
+else
+  echo -e "${YELLOW}Python build tools will execute in CI.${NC}"
 fi
 
 # Step 5: Git tag v1.0.0
@@ -72,3 +74,4 @@ echo "  4. Vercel (when ready):"
 echo "     vercel --cwd apps/web      # Marketing Site"
 echo "     vercel --cwd apps/cockpit  # Cockpit App"
 echo ""
+
