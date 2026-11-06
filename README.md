@@ -1,34 +1,118 @@
-# 🪐 GRAVITON
-
 <p align="center">
-  <strong>Your code is the center. AI orbits it. You control the gravity.</strong>
+  <h1 align="center">🪐 GRAVITON</h1>
+  <p align="center">
+    <strong>Your code is the center. AI orbits it. You control the gravity.</strong>
+  </p>
+  <p align="center">
+    The self-hosted, zero-trust AI coding cockpit and Model Context Protocol (MCP) control plane.
+  </p>
 </p>
 
 <p align="center">
   <a href="https://www.npmjs.com/package/@yakkshit/graviton"><img src="https://img.shields.io/npm/v/@yakkshit/graviton?style=for-the-badge&logo=npm&color=3B82F6" alt="npm version"/></a>
+  <a href="./LICENSE"><img src="https://img.shields.io/badge/License-MIT-blue?style=for-the-badge" alt="MIT License"/></a>
+  <a href="https://github.com"><img src="https://img.shields.io/badge/Build-Passing-10B981?style=for-the-badge&logo=githubactions&logoColor=white" alt="Build Status"/></a>
   <a href="https://bun.sh"><img src="https://img.shields.io/badge/Bun-1.4+-black?style=for-the-badge&logo=bun" alt="Bun"/></a>
-  <a href="https://nextjs.org"><img src="https://img.shields.io/badge/Next.js-16_Turbopack-black?style=for-the-badge&logo=next.js" alt="Next.js 16"/></a>
-  <a href="https://tailwindcss.com"><img src="https://img.shields.io/badge/Tailwind-v4-06B6D4?style=for-the-badge&logo=tailwindcss" alt="Tailwind CSS v4"/></a>
   <a href="https://modelcontextprotocol.io"><img src="https://img.shields.io/badge/MCP-Protocol%20Ready-6366F1?style=for-the-badge&logo=anthropic" alt="MCP Ready"/></a>
   <a href="https://turbo.build"><img src="https://img.shields.io/badge/Turborepo-Fast-EF4444?style=for-the-badge&logo=turborepo" alt="Turborepo"/></a>
-  <a href="./LICENSE"><img src="https://img.shields.io/badge/License-MIT-blue?style=for-the-badge" alt="MIT License"/></a>
 </p>
 
 ---
 
 ## ⚡ What is Graviton?
 
-**Graviton** (`@yakkshit/graviton`) is a self-hosted, multi-model AI coding cockpit and Zero-Trust Model Context Protocol (MCP) control plane. 
+Modern reasoning models (Claude 3.7 Sonnet, Gemini 2.5 Flash, GPT-4o, DeepSeek-R1, Local Ollama) write code at blinding speeds. But giving autonomous agents direct, unmonitored write access to your filesystem invites catastrophic regression, context blindness, and broken production branches.
 
-Modern reasoning models (Claude 3.7 Sonnet, Gemini 2.5 Flash, GPT-4o, DeepSeek R1, Local Ollama) generate code with incredible velocity. However, giving AI direct write access to your file system is risky—leading to regressions, hidden side effects, and broken production branches.
+**Graviton** places a **Zero-Trust Control Plane** between your AI models and your disk:
+1. **Traps Proposals in Memory:** Every tool edit is caught in an isolated in-memory buffer before hitting disk.
+2. **Computes Blast Radius:** Recursively parses downstream AST dependencies with `ts-morph` to gauge project-wide impact.
+3. **Presents Cockpit WebUI:** You inspect unified/split diffs, check affected symbols, and click **Approve**, **Block**, or **Rollback**.
+4. **Guarantees Git Determinism:** Auto-commits safety snapshots before writes, enabling single-click rollback without manual Git surgery.
 
-Graviton places a **human-in-the-loop interceptor** between your AI models and your filesystem:
-- **Zero Direct Writes:** When an AI tool calls `propose_edit`, the edit is trapped in memory.
-- **AST Blast Radius Calculation:** Graviton parses downstream dependencies via `ts-morph` AST analysis in real-time, warning you if a change impacts 1 file or 40 with animated counter feedback.
-- **Interactive Cockpit WebUI:** You inspect unified/split diffs, examine affected symbols, and click **Approve**, **Block**, or **Rollback**.
-- **Global Command Palette (⌘K):** Raycast-style spotlight search to jump to pending diffs, toggle live theme accents, or manage remote pairing sessions.
-- **Premium Toast Feedback:** Powered by 21st.dev Sonner notifications for model proposals, commit approvals, and instant state rollbacks.
-- **Git-Native Snapshot Isolation:** Every approved edit creates a deterministic checkpoint; rejections safely reset the staging tree without manual cleanup.
+---
+
+## ✨ Features
+
+- 🛡️ **Zero-Trust Edits:** Intercepts `propose_edit` in-memory. Zero unvetted disk writes by reasoning models or autonomous agents.
+- 💥 **AST Blast Radius:** Powered by `ts-morph` AST dependency scanning. Calculates the downstream ripple effect across your codebase, giving you exact affected file counts and real-time risk tiers (`LOW`, `MODERATE`, `HIGH`, `CRITICAL`).
+- ↩️ **Git-Native Rollbacks & Snapshots:** Every approved change creates an atomic git snapshot. One-click instant rollback reverts files cleanly without manual git surgery or broken working trees.
+- 🤖 **Multi-Model MCP:** Universal control plane connecting Claude 3.7 Sonnet, Gemini 2.5 Flash, GPT-4o, DeepSeek R1, and local Ollama instances over stdio or secure WebSocket/HTTP tunnels.
+- 🔍 **Command Palette (`⌘K`):** Raycast-style spotlight search with instant fuzzy filtering to jump to pending diffs, toggle live theme accents, or manage remote pairing sessions.
+- 🔔 **Sonner Toast System:** Fluid, animated feedback for incoming model proposals, human approvals, and instant rollbacks.
+- 🎨 **Dynamic Theme Engine:** Switch live cockpit accent frequencies (Electric Blue, Terminal Green, Neon Purple, Cyber Yellow, Crimson) with variable CSS injection (`var(--color-accent)`).
+
+---
+
+## 🚀 Quick Start
+
+Run the standalone CLI directly with **Bunx** (zero install required):
+
+```bash
+bunx @yakkshit/graviton start
+```
+
+### CLI Command Options
+
+```bash
+# Launch Cockpit WebUI and local MCP daemon on target repository
+graviton start --dir . --port 9121
+
+# Spin up an end-to-end encrypted public tunnel for remote pairing:
+graviton start --tunnel
+
+# Provide a specific authentication token:
+graviton start --tunnel --auth-key "your-secure-secret-token"
+```
+
+| Option | Flag | Default | Description |
+| :--- | :--- | :--- | :--- |
+| **Port** | `-p, --port <number>` | `9121` | WebSocket & HTTP telemetry server port |
+| **Target Directory** | `-d, --dir <path>` | `.` | Root directory of the repository to supervise |
+| **Auth Key** | `-a, --auth-key <string>` | *(Auto-generated UUID)* | Secret token required for WS/MCP connections |
+| **Public Tunnel** | `-t, --tunnel` | `false` | Automatically provisions secure public HTTPS/WSS URL |
+| **No Open** | `--no-open` | `false` | Prevent auto-opening default browser to Cockpit WebUI |
+
+---
+
+## 🔌 IDE Setup (Cursor & Claude Desktop)
+
+Graviton exposes native Model Context Protocol (MCP) tools (`read_file`, `propose_edit`, `get_ast_graph`, `rollback_checkpoint`). 
+
+Add Graviton to your editor configuration to enforce zero-trust reviews:
+
+### 1. Cursor Composer (`.cursor/mcp.json`)
+Place this in your workspace's `.cursor/mcp.json` (or global Cursor configuration):
+
+```json
+{
+  "mcpServers": {
+    "graviton": {
+      "command": "bunx",
+      "args": ["@yakkshit/graviton", "mcp"],
+      "cwd": "${workspaceFolder}"
+    }
+  }
+}
+```
+
+### 2. Claude Desktop (`claude_desktop_config.json`)
+Edit your Claude Desktop configuration file:
+- **macOS:** `~/Library/Application Support/Claude/claude_desktop_config.json`
+- **Windows:** `%APPDATA%\Claude\claude_desktop_config.json`
+
+```json
+{
+  "mcpServers": {
+    "graviton": {
+      "command": "bunx",
+      "args": ["@yakkshit/graviton", "mcp"],
+      "cwd": "/absolute/path/to/your/project"
+    }
+  }
+}
+```
+
+*When Claude or Cursor initiates a file edit, Graviton immediately catches the proposal, calculates the AST blast radius, and streams the diff to your Cockpit WebUI for review!*
 
 ---
 
@@ -57,7 +141,7 @@ flowchart TD
 
     subgraph Codebase["Your Repository"]
         TargetFiles["Target Source Code (.ts, .tsx, .py, etc.)"]
-        GitRepo[".git / Staging Area"]
+        GitRepo[".git / Snapshot Commits"]
     end
 
     Cursor -->|MCP Tools / Stdio| MCPServer
@@ -79,21 +163,21 @@ flowchart TD
 
 ## 📂 Monorepo Structure
 
-Graviton is organized as a high-performance **Turborepo** monorepo powered strictly by **`bun`**:
+Graviton is architected as an ultra-fast **Turborepo** monorepo powered strictly by **`bun`**:
 
 ```text
 graviton/
 ├── apps/
 │   ├── cockpit/         # Next.js 16 Cockpit Dashboard (Port 3001)
 │   │   ├── app/page.tsx # Tri-column desktop layout (Tree, DiffViewer, ActionPanel)
-│   │   ├── components/  # TopBar, FileTree, DiffViewer, ActionPanel
-│   │   └── lib/         # Zustand state store & WebSocket client
+│   │   ├── components/  # TopBar, FileTree, DiffViewer, ActionPanel, ThemeCustomizer
+│   │   └── lib/         # Zustand store, socket-client, AST impact mapping
 │   ├── server/          # Core MCP & WebSocket Engine (Port 9121)
 │   │   ├── lib/ast-analyzer.ts # ts-morph dependency impact calculator
 │   │   ├── lib/engine.ts       # simple-git snapshot & safe path execution
 │   │   ├── lib/ws-server.ts    # Broadcasts diff proposals & awaits decisions
 │   │   └── lib/mcp-server.ts   # Zero-trust MCP tools implementation
-│   └── web/             # Award-winning Next.js 16 Marketing Site (Port 3000)
+│   └── web/             # Next.js 16 Marketing Site (Port 3000)
 │       ├── components/  # Hero, GravityLoop, FeatureBento, Architecture, Footer
 │       └── app/         # Tailwind CSS v4 + 21st.dev Dynamic Theme Engine
 ├── packages/
@@ -108,105 +192,26 @@ graviton/
 
 ---
 
-## 🚀 Quick Start
+## 🛠️ Local Development
 
-### 1. Prerequisites
-- **[Bun](https://bun.sh)** `v1.2.0` or higher:
-  ```bash
-  curl -fsSL https://bun.sh/install | bash
-  ```
-
-### 2. Run Directly with Bunx (Zero Install)
 ```bash
-bunx @yakkshit/graviton@latest
-```
-
-### 3. Local Development
-```bash
-git clone https://github.com/context-code/graviton.git
+# 1. Clone repository
+git clone https://github.com/yakkshit/graviton.git
 cd graviton
+
+# 2. Install dependencies
 bun install
+
+# 3. Build monorepo packages
 bun run build
+
+# 4. Launch all dev services in parallel
 bun run dev
 ```
 
-- 🌐 **Marketing Site:** `http://localhost:3000`
+- 🌐 **Marketing Web:** `http://localhost:3000`
 - 🎛️ **Cockpit Dashboard:** `http://localhost:3001`
-- 🔌 **Graviton Telemetry & MCP Engine:** `ws://localhost:9121`
-
----
-
-## 🛠️ Global CLI (`graviton`)
-
-Graviton is published on npm as [`@yakkshit/graviton`](https://www.npmjs.com/package/@yakkshit/graviton).
-
-### Start the Cockpit & Engine
-```bash
-# Launch Cockpit and MCP daemon on current repository
-graviton start
-
-# Or with custom port and automated public tunnel
-graviton start --port 9121 --tunnel
-```
-
-Options:
-- `-p, --port <number>`: Telemetry WebSocket port (default: `9121`)
-- `-d, --dir <path>`: Target repository directory (default: `.`)
-- `-a, --auth-key <string>`: Secret authentication token required for WS/MCP connections (auto-generates UUID if omitted)
-- `-t, --tunnel`: Automatically spin up a secure public HTTPS/WSS tunnel via `localtunnel`
-- `--no-open`: Skip automatic browser launch of the Cockpit WebUI
-
----
-
-## 🔌 Connecting to AI Agents (Cursor & Claude)
-
-Graviton provides native Model Context Protocol (MCP) capabilities. Configure your tools to route edits through Graviton's zero-trust gateway:
-
-### Claude Desktop Configuration
-Add Graviton to your `claude_desktop_config.json`:
-- **macOS:** `~/Library/Application Support/Claude/claude_desktop_config.json`
-- **Windows:** `%APPDATA%\Claude\claude_desktop_config.json`
-
-```json
-{
-  "mcpServers": {
-    "graviton": {
-      "command": "bunx",
-      "args": ["@yakkshit/graviton", "mcp"],
-      "cwd": "/absolute/path/to/your/project"
-    }
-  }
-}
-```
-
-### Cursor Composer Configuration
-Add Graviton to your workspace's `.cursor/mcp.json`:
-
-```json
-{
-  "mcpServers": {
-    "graviton": {
-      "command": "bunx",
-      "args": ["@yakkshit/graviton", "mcp"]
-    }
-  }
-}
-```
-
----
-
-## 🎛️ Key Capabilities
-
-| Feature | Description |
-| :--- | :--- |
-| **Zero-Trust Intercepts** | AI proposals are held in staging until developer approval. No surprise disk writes. |
-| **AST Blast Radius & Animated Counters** | `ts-morph` traverses symbol imports across the project, returning exact file impact counts and dynamic risk levels (`LOW`, `MODERATE`, `HIGH`, `CRITICAL`) animated in real-time. |
-| **Command Palette (⌘K)** | Global spotlight search with fuzzy filtering to jump to diffs, switch theme accents, and toggle session settings. |
-| **Shimmer & Skeleton Loaders** | High-fidelity shimmer loaders while WebSocket is connecting or diffs are rendering. |
-| **Sonner Toast System** | Animated notifications for diff proposals, approvals, rollbacks, and error reporting. |
-| **Secure Remote Tunneling** | Integrated `localtunnel` with token-based authentication (`--tunnel`, `--auth-key`) for cloud agents and pairing. |
-| **Git Snapshot Commits** | Automatically commits state snapshots before edits so you can roll back instantly with zero manual Git surgery. |
-| **Dynamic Theme Engine** | Switch the cockpit accent color live (Electric Blue `#3B82F6`, Terminal Green `#10B981`, Neon Purple `#A855F7`, Cyber Yellow `#EAB308`, Crimson `#EF4444`). |
+- 🔌 **Graviton Telemetry & Engine:** `ws://localhost:9121`
 
 ---
 

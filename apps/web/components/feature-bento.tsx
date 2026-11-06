@@ -176,7 +176,7 @@ export function FeatureBento() {
                   </span>
                 </div>
 
-                {/* Destination: Central Orbit Cockpit Core */}
+                {/* Destination: Central Graviton Cockpit Core */}
                 <div
                   className="p-5 rounded-2xl border flex flex-col items-center justify-center text-center shadow-2xl relative"
                   style={{
@@ -191,7 +191,7 @@ export function FeatureBento() {
                   >
                     <Activity className="w-5 h-5 animate-pulse" />
                   </div>
-                  <div className="font-bold text-white text-sm font-mono">ORBIT COCKPIT</div>
+                  <div className="font-bold text-white text-sm font-mono">GRAVITON COCKPIT</div>
                   <div className="text-[10px] text-neutral-400 font-mono">Unified Control Plane</div>
                   <div className="mt-2 inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-400 text-[9px] font-bold">
                     <span>● ZERO DRIFT</span>
@@ -374,7 +374,7 @@ export function FeatureBento() {
             <div className="p-3 rounded-xl border border-white/10 bg-black/80 font-mono text-xs space-y-1 text-neutral-300">
               <div className="text-[10px] text-neutral-500">$ Terminal</div>
               <div className="text-emerald-400 text-[11px] font-bold">
-                orbit serve --mcp --port 9120
+                graviton start --port 9120
               </div>
               <div className="text-[10px] text-neutral-400">
                 ✓ MCP Socket: ready on ws://127.0.0.1:9120

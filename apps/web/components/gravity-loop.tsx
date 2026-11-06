@@ -40,7 +40,7 @@ const STEPS: StepData[] = [
     tag: "THE MAP",
     title: "We map the entire architecture first.",
     description:
-      "Before any model touches a single line, Orbit's high-speed AST scanner builds a complete dependency graph. Every variable, import, and call site is grounded in mathematical truth, eliminating context blindness.",
+      "Before any model touches a single line, Graviton's high-speed AST scanner builds a complete dependency graph. Every variable, import, and call site is grounded in mathematical truth, eliminating context blindness.",
     badge: "AST GROUND TRUTH",
   },
   {
@@ -122,7 +122,7 @@ export function GravityLoop() {
                 style={{ backgroundColor: currentAccent.hex }}
               />
               <span className="font-mono text-xs uppercase tracking-widest text-neutral-400">
-                THE GRAVITY LOOP // HOW ORBIT WORKS
+                THE GRAVITY LOOP // HOW GRAVITON WORKS
               </span>
             </div>
             <div className="font-mono text-xs text-neutral-500 hidden sm:block">

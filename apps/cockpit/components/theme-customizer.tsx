@@ -36,7 +36,7 @@ export function ThemeCustomizer() {
       <SheetTrigger
         type="button"
         aria-label="Open Theme Customizer"
-        className="relative group p-2 rounded-lg border border-white/10 bg-white/[0.03] hover:bg-white/[0.08] transition-all duration-200 text-neutral-300 hover:text-white flex items-center justify-center cursor-pointer"
+        className="relative group p-2 rounded-lg border border-white/10 bg-white/3 hover:bg-white/8 transition-all duration-200 text-neutral-300 hover:text-white flex items-center justify-center cursor-pointer"
       >
         <Palette className="w-4 h-4 transition-transform group-hover:rotate-12" />
         <span
@@ -89,8 +89,8 @@ export function ThemeCustomizer() {
                     onClick={() => setAccentById(preset.id)}
                     className={`group relative flex items-center justify-between p-3 rounded-xl border text-left transition-all duration-200 cursor-pointer ${
                       isSelected
-                        ? "border-white/30 bg-white/[0.06] shadow-sm"
-                        : "border-white/5 bg-white/[0.02] hover:bg-white/[0.04] hover:border-white/10"
+                        ? "border-white/30 bg-white/6 shadow-sm"
+                        : "border-white/5 bg-white/2 hover:bg-white/4 hover:border-white/10"
                     }`}
                   >
                     <div className="flex items-center gap-3">
@@ -104,7 +104,7 @@ export function ThemeCustomizer() {
                         }}
                       >
                         {isSelected && (
-                          <Check className="w-3.5 h-3.5 text-black stroke-[3]" />
+                          <Check className="w-3.5 h-3.5 text-black stroke-3" />
                         )}
                       </div>
                       <div>
@@ -139,7 +139,7 @@ export function ThemeCustomizer() {
                 onClick={() => setTheme("dark")}
                 className={`border text-xs flex items-center gap-1.5 cursor-pointer ${
                   theme === "dark"
-                    ? "border-white/40 bg-white/[0.1] text-white"
+                    ? "border-white/40 bg-white/10 text-white"
                     : "border-white/10 bg-transparent text-neutral-400 hover:text-white"
                 }`}
               >
@@ -152,7 +152,7 @@ export function ThemeCustomizer() {
                 onClick={() => setTheme("light")}
                 className={`border text-xs flex items-center gap-1.5 cursor-pointer ${
                   theme === "light"
-                    ? "border-white/40 bg-white/[0.1] text-white"
+                    ? "border-white/40 bg-white/10 text-white"
                     : "border-white/10 bg-transparent text-neutral-400 hover:text-white"
                 }`}
               >
@@ -165,7 +165,7 @@ export function ThemeCustomizer() {
                 onClick={() => setTheme("system")}
                 className={`border text-xs flex items-center gap-1.5 cursor-pointer ${
                   theme === "system"
-                    ? "border-white/40 bg-white/[0.1] text-white"
+                    ? "border-white/40 bg-white/10 text-white"
                     : "border-white/10 bg-transparent text-neutral-400 hover:text-white"
                 }`}
               >
@@ -213,7 +213,7 @@ export function ThemeCustomizer() {
                   </button>
                   <button
                     type="button"
-                    className="px-3 py-1.5 rounded-lg text-xs font-medium text-neutral-300 border border-white/15 bg-white/[0.04] hover:bg-white/[0.08]"
+                    className="px-3 py-1.5 rounded-lg text-xs font-medium text-neutral-300 border border-white/5 bg-white/4 hover:bg-white/8"
                   >
                     Rollback
                   </button>
