@@ -1,0 +1,45 @@
+{
+  "name": "@yakkshit/graviton",
+  "version": "1.0.0",
+  "description": "The self-hosted, zero-trust AI coding cockpit. Control gravity, not just code.",
+  "type": "module",
+  "bin": {
+    "graviton": "./dist/index.js"
+  },
+  "main": "./dist/index.js",
+  "files": [
+    "dist"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "keywords": [
+    "ai",
+    "mcp",
+    "model-context-protocol",
+    "cockpit",
+    "zero-trust",
+    "ast",
+    "claude",
+    "cursor",
+    "graviton"
+  ],
+  "license": "MIT",
+  "scripts": {
+    "build": "bun build ./src/index.ts --target=node --outfile=./dist/index.js --banner=\"#!/usr/bin/env node\"",
+    "dev": "bun build --watch ./src/index.ts --target=node --outfile=./dist/index.js --banner=\"#!/usr/bin/env node\"",
+    "prepublishOnly": "bun run build",
+    "check-types": "tsc --noEmit"
+  },
+  "dependencies": {
+    "chalk": "^5.4.1",
+    "commander": "^13.1.0",
+    "localtunnel": "^2.0.2"
+  },
+  "devDependencies": {
+    "@repo/typescript-config": "*",
+    "@types/localtunnel": "^2.0.4",
+    "@types/node": "26.4.1",
+    "typescript": "7.0.2"
+  }
+}
