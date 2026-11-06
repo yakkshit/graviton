@@ -1,0 +1,96 @@
+name: GitHub Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: 'Release Tag (e.g. v1.0.0)'
+        required: true
+        default: 'v1.0.0'
+
+permissions:
+  contents: write
+
+jobs:
+  build-release-binaries:
+    name: Build Release Asset (${{ matrix.artifact }})
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: macos-14
+            target: bun-darwin-arm64
+            artifact: graviton-darwin-arm64
+          - os: macos-13
+            target: bun-darwin-x64
+            artifact: graviton-darwin-x64
+          - os: ubuntu-latest
+            target: bun-linux-x64
+            artifact: graviton-linux-x64
+          - os: ubuntu-latest
+            target: bun-linux-arm64
+            artifact: graviton-linux-arm64
+          - os: windows-latest
+            target: bun-windows-x64
+            artifact: graviton-win-x64.exe
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+
+      - name: Install dependencies
+        run: bun install --frozen-lockfile
+
+      - name: Compile standalone executable
+        shell: bash
+        run: |
+          cd packages/cli
+          mkdir -p bin
+          bun build ./src/index.ts --compile --target=${{ matrix.target }} --outfile bin/${{ matrix.artifact }}
+          chmod +x bin/${{ matrix.artifact }} || true
+
+      - name: Upload asset artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: release-asset-${{ matrix.artifact }}
+          path: packages/cli/bin/${{ matrix.artifact }}
+          if-no-files-found: error
+
+  create-release:
+    name: Create GitHub Release with Assets
+    needs: build-release-binaries
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Download all release asset artifacts
+        uses: actions/download-artifact@v4
+        with:
+          path: /tmp/release-assets
+          pattern: 'release-asset-*'
+          merge-multiple: true
+
+      - name: List downloaded release assets
+        run: ls -la /tmp/release-assets/
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ github.ref_name || inputs.tag }}
+          name: Graviton ${{ github.ref_name || inputs.tag }}
+          generate_release_notes: true
+          draft: false
+          prerelease: false
+          files: /tmp/release-assets/*
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
