@@ -24,6 +24,12 @@ jobs:
         with:
           bun-version: latest
 
+      - name: Setup Node for npm registry
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          registry-url: 'https://registry.npmjs.org'
+
       - name: Cache Bun dependencies
         uses: actions/cache@v4
         with:
@@ -43,24 +49,32 @@ jobs:
 
       - name: Publish to npm
         env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
           DESIRED_PACKAGE_NAME: ${{ inputs.package_name || secrets.NPM_PACKAGE_NAME || 'graviton' }}
           FALLBACK_PACKAGE_NAME: '@yakkshit/graviton'
         run: |
           cd packages/cli
-          echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > ~/.npmrc
+
+          if [ -z "$NODE_AUTH_TOKEN" ]; then
+            echo "❌ ERROR: NPM_TOKEN secret is not set or empty in GitHub Secrets!"
+            echo "Please go to GitHub Repo -> Settings -> Secrets and variables -> Actions and add NPM_TOKEN."
+            exit 1
+          fi
+
+          echo "//registry.npmjs.org/:_authToken=${NODE_AUTH_TOKEN}" > .npmrc
+          echo "//registry.npmjs.org/:_authToken=${NODE_AUTH_TOKEN}" > ~/.npmrc
 
           # Try publishing under desired package name first
           npm pkg set name="${DESIRED_PACKAGE_NAME}"
           echo "Attempting publish with package name '${DESIRED_PACKAGE_NAME}'..."
 
           if npm publish --access public; then
-            echo "Successfully published to npm as '${DESIRED_PACKAGE_NAME}'!"
+            echo "🎉 Successfully published to npm as '${DESIRED_PACKAGE_NAME}'!"
           else
-            echo "Publish as '${DESIRED_PACKAGE_NAME}' failed or name is restricted."
+            echo "⚠️ Publish as '${DESIRED_PACKAGE_NAME}' failed or name is restricted."
             echo "Falling back automatically to '${FALLBACK_PACKAGE_NAME}'..."
             npm pkg set name="${FALLBACK_PACKAGE_NAME}"
             npm publish --access public
-            echo "Successfully published to npm as '${FALLBACK_PACKAGE_NAME}'!"
+            echo "🎉 Successfully published to npm as '${FALLBACK_PACKAGE_NAME}'!"
           fi
-
