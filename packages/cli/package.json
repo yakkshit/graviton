@@ -19,6 +19,7 @@
     "build": "bun build ./src/index.ts --outdir ./dist --target node --minify --banner=\"#!/usr/bin/env node\"",
     "prepublishOnly": "bun run build && bun test",
     "test": "bun test",
+    "lint": "tsc --noEmit",
     "check-types": "tsc --noEmit"
   },
   "keywords": [
