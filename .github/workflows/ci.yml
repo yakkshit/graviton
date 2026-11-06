@@ -36,10 +36,10 @@ jobs:
       - name: Typecheck Monorepo
         run: bun run typecheck
 
-      - name: Run Test Suite
-        run: bun test
-
       - name: Build Monorepo
         run: bun run build
         env:
           NEXT_TELEMETRY_DISABLED: 1
+
+      - name: Run Test Suite
+        run: bun test

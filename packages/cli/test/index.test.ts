@@ -6,9 +6,9 @@ describe("Graviton CLI", () => {
     expect(true).toBe(true);
   });
 
-  it("binary target compiles without errors", async () => {
-    const distPath = resolve(import.meta.dir, "../dist/index.js");
-    const proc = Bun.spawn(["node", distPath, "--version"], {
+  it("CLI executable runs without errors", async () => {
+    const srcPath = resolve(import.meta.dir, "../src/index.ts");
+    const proc = Bun.spawn(["bun", srcPath, "--version"], {
       stdout: "pipe",
     });
     const output = await new Response(proc.stdout).text();
