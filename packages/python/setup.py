@@ -19,10 +19,10 @@ setup(
             "graviton=graviton_cli.__main__:main",
         ],
     },
+    license="MIT",
     classifiers=[
         "Development Status :: 5 - Production/Stable",
         "Intended Audience :: Developers",
-        "License :: OSI Approved :: MIT License",
         "Programming Language :: Python :: 3",
         "Topic :: Software Development",
     ],
