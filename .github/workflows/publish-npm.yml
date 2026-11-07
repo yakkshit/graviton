@@ -50,9 +50,7 @@ jobs:
       - name: Publish to npm
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-          DESIRED_PACKAGE_NAME: ${{ inputs.package_name || secrets.NPM_PACKAGE_NAME || 'graviton' }}
-          FALLBACK_PACKAGE_NAME: '@yakkshit/graviton'
+          PACKAGE_NAME: ${{ inputs.package_name || secrets.NPM_PACKAGE_NAME || '@yakkshit/graviton' }}
         run: |
           cd packages/cli
 
@@ -65,16 +63,7 @@ jobs:
           echo "//registry.npmjs.org/:_authToken=${NODE_AUTH_TOKEN}" > .npmrc
           echo "//registry.npmjs.org/:_authToken=${NODE_AUTH_TOKEN}" > ~/.npmrc
 
-          # Try publishing under desired package name first
-          npm pkg set name="${DESIRED_PACKAGE_NAME}"
-          echo "Attempting publish with package name '${DESIRED_PACKAGE_NAME}'..."
-
-          if npm publish --access public; then
-            echo "🎉 Successfully published to npm as '${DESIRED_PACKAGE_NAME}'!"
-          else
-            echo "⚠️ Publish as '${DESIRED_PACKAGE_NAME}' failed or name is restricted."
-            echo "Falling back automatically to '${FALLBACK_PACKAGE_NAME}'..."
-            npm pkg set name="${FALLBACK_PACKAGE_NAME}"
-            npm publish --access public
-            echo "🎉 Successfully published to npm as '${FALLBACK_PACKAGE_NAME}'!"
-          fi
+          npm pkg set name="${PACKAGE_NAME}"
+          echo "Publishing to npm as '${PACKAGE_NAME}' with --access public..."
+          npm publish --access public
+          echo "🎉 Successfully published to npm as '${PACKAGE_NAME}'!"

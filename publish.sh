@@ -57,10 +57,10 @@ cd ../..
 # 3. PyPI Package Build
 echo ""
 echo "🐍 Step 4: Python Wrapper (graviton-cli) for PyPI..."
-echo "Package located in packages/graviton-cli"
+echo "Package located in packages/python"
 echo "To build and publish manually to PyPI:"
-echo "  cd packages/graviton-cli"
-echo "  python3 -m build"
+echo "  cd packages/python"
+echo "  python3 setup.py sdist bdist_wheel"
 echo "  twine upload dist/*"
 
 # 4. GitHub Setup

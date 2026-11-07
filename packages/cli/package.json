@@ -1,5 +1,5 @@
 {
-  "name": "graviton",
+  "name": "@yakkshit/graviton",
   "version": "1.0.0",
   "description": "Your code is the center. AI orbits it. The self-hosted, zero-trust AI coding cockpit.",
   "type": "module",
